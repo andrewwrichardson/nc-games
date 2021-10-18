@@ -1,0 +1,64 @@
+.result_img {
+  width: 5%;
+  height: 5%;
+}
+.reviews_frame {
+  margin: 3%;
+  height: 25%;
+  width: 75%;
+}
+.review_frame {
+  border: solid;
+  display: grid;
+  grid-template-areas:
+    "categorySelect  categorySelect"
+    "title  category"
+    "owner space"
+    "img review_body"
+    "designer votes";
+  margin: 1%;
+  background-color: lemonchiffon;
+}
+
+.title {
+  grid-area: title;
+  margin: 5px;
+  width: max-content;
+}
+.category {
+  grid-area: category;
+  margin: 5px;
+  margin-right: 2%;
+  width: max-content;
+  justify-content: right;
+}
+
+.review_body {
+  grid-area: review_body;
+}
+
+.votes {
+  grid-area: votes;
+  margin-left: 90%;
+}
+.owner {
+  grid-area: owner;
+  margin: 5px;
+  width: max-content;
+}
+
+.designer {
+  grid-area: designer;
+  margin-right: 50%;
+  margin: 5px;
+  width: max-content;
+}
+.review_img {
+  grid-area: img;
+  width: 78%;
+  height: 75%;
+  padding: 3%;
+}
+.categorySelect {
+  grid-area: categorySelect;
+}

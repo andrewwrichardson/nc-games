@@ -8,7 +8,8 @@
   width: 75%;
 }
 .review_frame {
-  border: solid;
+  border: thin solid;
+  border-radius: 3px;
   display: grid;
   grid-template-areas:
     "categorySelect  categorySelect"
@@ -17,7 +18,7 @@
     "img review_body"
     "designer votes";
   margin: 1%;
-  background-color: lemonchiffon;
+  background-color: white;
 }
 
 .title {

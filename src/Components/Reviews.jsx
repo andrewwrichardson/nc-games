@@ -1,34 +1,37 @@
 import "../styles/Reviews.css";
 import { Link } from "react-router-dom";
 import { getCategories, getReviews } from "../utils";
-import { useEffect, useState, useParams } from "react";
-import ReviewByCategory from "./ReviewByCategory";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Voter from "./Voter";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  //const category_slug = useParams();
-  //console.log(category_slug, "@@@@@@@@@@@@@@");
+  const [isLoading, setIsLoading] = useState(true);
+  const [noEntries, setNoEntries] = useState(false);
+
+  const { category } = useParams();
+
   useEffect(() => {
-    getReviews()
+    getReviews(category)
       .then((reviewFromApi) => {
-        //console.log(data);
         setReviews(reviewFromApi);
-        console.log(reviewFromApi, "Aaaaaaa");
         setIsLoading(false);
+        if (reviewFromApi.length === 0) {
+          setNoEntries(true);
+        }
       })
       .catch((err) => {
         console.dir(err, "error message");
       });
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     getCategories()
       .then((categoriesFromApi) => {
-        //console.log(data);
         setCategories(categoriesFromApi);
-        console.log(categoriesFromApi, "categories");
+        //console.log(categoriesFromApi, "categories");
       })
       .catch((err) => {
         console.dir(err, "error message");
@@ -36,29 +39,47 @@ const Reviews = () => {
   }, []);
 
   return (
-    <>
-      <section className="categorySelect">
-        {categories.map((obj) => {
-          return <Link to="/:id">{obj.slug}</Link>;
-        })}
-      </section>
+    <div>
+      {noEntries ? (
+        <h1>No Entries for category</h1>
+      ) : isLoading ? (
+        <h1>loading</h1>
+      ) : (
+        <>
+          <section className="categorySelect">
+            {categories.map((obj) => {
+              return <Link to={`/Reviews/${obj.slug}`}>{obj.slug}</Link>;
+            })}
+          </section>
 
-      <section className="reviews_frame">
-        {reviews.map((obj) => {
-          return (
-            <section className="review_frame">
-              <p className="title">{obj.title}</p>
-              <img src={obj.review_img_url} alt="" className="review_img"></img>
-              <p className="designer"> {obj.designer}</p>
-              <p className="owner">{obj.owner}</p>
-              <p className="votes">Votes {obj.votes}</p>
-              <p className="review_body">{obj.review_body}</p>
-              <p className="category">Category {obj.category}</p>
-            </section>
-          );
-        })}
-      </section>
-    </>
+          <section className="reviews_frame">
+            {reviews.map((obj) => {
+              return (
+                <Link
+                  to={`/Reviews/${obj.review_id}/Comments`}
+                  key={obj.review_id}
+                >
+                  {obj.slug}
+                  <section className="review_frame">
+                    <p className="title">{obj.title}</p>
+                    <img
+                      src={obj.review_img_url}
+                      alt=""
+                      className="review_img"
+                    ></img>
+                    <p className="designer"> {obj.designer}</p>
+                    <p className="owner">{obj.owner}</p>
+
+                    <p className="review_body">{obj.review_body}</p>
+                    <p className="category">Category {obj.category}</p>
+                  </section>
+                </Link>
+              );
+            })}
+          </section>
+        </>
+      )}
+    </div>
   );
 };
 

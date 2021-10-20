@@ -1,7 +1,15 @@
 import "../styles/Nav.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Nav = () => {
+const Nav = ({ logOut, user, logIn }) => {
+  const [userValue, setUserValue] = useState();
+
+  const logInSubmit = (e) => {
+    e.preventDefault();
+    logIn(userValue);
+  };
+
   return (
     <nav>
       <Link to="/">
@@ -11,15 +19,21 @@ const Nav = () => {
           alt=""
         />
       </Link>
-
       <Link to="/Search"> Search</Link>
-      <Link to="/Login">
-        <img
-          className="profileIcon"
-          src="https://pic.onlinewebfonts.com/svg/img_237553.png"
-          alt="welcome image"
-        />
-      </Link>
+      <span>Welcome {user}</span>{" "}
+      <button className="Nav_logOutButton" onClick={logOut}>
+        Log Out
+      </button>
+      <form onSubmit={logInSubmit}>
+        <input
+          type="text"
+          className="login_text"
+          onChange={(e) => setUserValue(e.target.value)}
+        ></input>
+        <button input="submit" className="login_button">
+          Login
+        </button>
+      </form>
     </nav>
   );
 };

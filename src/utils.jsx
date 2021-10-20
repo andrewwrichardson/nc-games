@@ -38,3 +38,27 @@ export const patchReview = async (review_id, votes) => {
   //console.log(review_id, votes, "inputs");
   return data;
 };
+
+export const postComment = async (review_id, username, body) => {
+  console.log(username, review_id, body);
+  const { data } = await gamesApi.post(`/reviews/${review_id}/comments`, {
+    username: username,
+    body: body,
+    review_id: review_id,
+  });
+  console.log(data, "<<<<");
+  //console.log(review_id, votes, "inputs");
+  return data;
+};
+
+export const getUsers = async (review_id, username, body) => {
+  console.log(username, review_id, body);
+  const { data } = await gamesApi.post(`/reviews/${review_id}/comments`, {
+    username: username,
+    body: body,
+    review_id: review_id,
+  });
+  console.log(data, "<<<<");
+  //console.log(review_id, votes, "inputs");
+  return data;
+};

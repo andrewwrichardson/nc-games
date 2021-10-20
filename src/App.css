@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: lightgray;
+  background-image: url(https://thumbs.dreamstime.com/z/board-games-hand-draw-doodle-background-vector-illustration-147129252.jpg);
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {

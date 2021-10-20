@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import Voter from "./Voter";
 import "../styles/CommentsByReview.css";
 import AddComment from "./AddComment";
-const CommentsByReview = () => {
+
+const CommentsByReview = ({ user }) => {
   const { Review_id } = useParams();
   const [commentsByReview, setCommentsByReview] = useState([]);
   const [Review, setReview] = useState([]);
@@ -59,8 +60,15 @@ const CommentsByReview = () => {
             </section>
             <h2>Comments</h2>
 
-            <button onClick={() => setPopup(true)}>Add Comment</button>
-            <AddComment popup={popup} setPopup={setPopup}></AddComment>
+            <button onClick={() => setPopup(() => setPopup((b) => !b))}>
+              Add Comment
+            </button>
+            <AddComment
+              popup={popup}
+              setPopup={setPopup}
+              user={user}
+              review_id={Review_id}
+            ></AddComment>
 
             {commentsByReview.map((obj) => {
               return (

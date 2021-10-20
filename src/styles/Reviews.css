@@ -6,6 +6,7 @@
   margin: 3%;
   height: 25%;
   width: 75%;
+  background-color: rgba(255, 255, 255, 0.918);
 }
 .review_frame {
   border: thin solid;
@@ -18,7 +19,7 @@
     "img review_body"
     "designer votes";
   margin: 1%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.918);
 }
 
 .title {

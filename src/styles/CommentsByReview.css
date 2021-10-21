@@ -1,6 +1,6 @@
 .commentFrame {
   max-width: 700px;
-  border: solid;
+  border: solid thin;
   display: grid;
   grid-template-areas:
     "author author"

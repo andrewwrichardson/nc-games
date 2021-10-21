@@ -1,5 +1,6 @@
 //import react from "react";
 import "../styles/AddComment.css";
+import "../App.css";
 import { useState } from "react";
 import { postComment } from "../utils";
 
@@ -31,9 +32,13 @@ const AddComment = ({ setPopup, popup, user, review_id }) => {
               defaultValue="Add comment here"
             ></textarea>
             <br />
-            <button onClick={setPopup((b) => !b)}> submit </button>
+            <button onClick={setPopup((b) => !b)} className="genButton">
+              submit
+            </button>
             <br />
-            <button onClick={() => setPopup((b) => !b)}> close</button>
+            <button onClick={() => setPopup((b) => !b)} className="genButton">
+              close
+            </button>
           </form>
         </section>
       )}

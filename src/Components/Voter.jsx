@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchReview } from "../utils";
+import "../App.css";
 import "../styles/Reviews.css";
 
 const Voter = ({ review_id, votes }) => {
@@ -15,7 +16,9 @@ const Voter = ({ review_id, votes }) => {
   };
   return (
     <div className="commentVotes">
-      <button onClick={onClickHandle}>{votes + voteChange}👍</button>
+      <button onClick={onClickHandle} className="genButton">
+        {votes + voteChange}👍
+      </button>
     </div>
   );
 };

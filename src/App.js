@@ -35,11 +35,11 @@ function App() {
           <Route exact path="/">
             <Reviews />
           </Route>
-          <Route exact path="/Reviews/:category">
-            <Reviews />
-          </Route>
-          <Route exact path="/Reviews/:Review_id/Comments">
+          <Route exact path="/Reviews/:Review_id?/Comments">
             <CommentsByReview user={user} />
+          </Route>
+          <Route exact path="/Reviews/:category?/:sort_by?/:order?">
+            <Reviews />
           </Route>
         </Switch>
       </BrowserRouter>

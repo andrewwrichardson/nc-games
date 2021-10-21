@@ -4,11 +4,11 @@ const gamesApi = axios.create({
   baseURL: "https://northcoder-games.herokuapp.com/api",
 });
 
-export const getReviews = async (category) => {
+export const getReviews = async (category, sort_by, order) => {
   const { data } = await gamesApi.get("/reviews", {
-    params: { category: category },
+    params: { category: category, sort_by: sort_by, order: order },
   });
-  //console.log(data, "<<<<");
+  console.log(data, "<<<<");
   return data.reviews;
 };
 
@@ -26,7 +26,7 @@ export const getCommentsByReview = async (review_id) => {
 
 export const getReview = async (review_id) => {
   const { data } = await gamesApi.get(`/reviews/${review_id}`);
-  //console.log(data, "<<<<");
+  console.log(data, "<<<<");
   return data.review;
 };
 

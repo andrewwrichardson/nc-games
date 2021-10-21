@@ -4,6 +4,7 @@ import { getReview, getCommentsByReview } from "../utils";
 import { useEffect, useState } from "react";
 import Voter from "./Voter";
 import "../styles/CommentsByReview.css";
+import "../App.css";
 import AddComment from "./AddComment";
 
 const CommentsByReview = ({ user }) => {
@@ -13,17 +14,18 @@ const CommentsByReview = ({ user }) => {
   const [popup, setPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [noEntries, setNoEntries] = useState(true);
-
+  console.log(Review_id, "@@@@@");
   useEffect(() => {
     getReview(Review_id)
       .then((reviewFromApi) => {
         setReview(reviewFromApi);
         setIsLoading(false);
+        console.log(Review_id);
       })
       .catch((err) => {
         console.dir(err, "error message");
       });
-  }, []);
+  }, [Review_id]);
 
   useEffect(() => {
     getCommentsByReview(Review_id)
@@ -36,7 +38,7 @@ const CommentsByReview = ({ user }) => {
       .catch((err) => {
         console.dir(err, "error message");
       });
-  }, []);
+  }, [Review_id]);
 
   return (
     <div>
@@ -60,7 +62,10 @@ const CommentsByReview = ({ user }) => {
             </section>
             <h2>Comments</h2>
 
-            <button onClick={() => setPopup(() => setPopup((b) => !b))}>
+            <button
+              className="genButton"
+              onClick={() => setPopup(() => setPopup((b) => !b))}
+            >
               Add Comment
             </button>
             <AddComment

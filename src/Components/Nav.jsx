@@ -20,6 +20,7 @@ const Nav = ({ logOut, user, logIn }) => {
           alt=""
         />
       </Link>
+      <Link to="/Graph">Graph</Link>
       {user && <span>Welcome {user}</span>}
       <form onSubmit={logInSubmit} className="">
         <input

@@ -47,7 +47,7 @@ const CommentsByReview = ({ user }) => {
           <h1>loading</h1>
         ) : (
           <>
-            <section className="review_frame">
+            <section className="comment_review_frame">
               <p className="title">{Review[0].title}</p>
               <img
                 src={Review[0].review_img_url}
